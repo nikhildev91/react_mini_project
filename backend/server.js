@@ -6,6 +6,7 @@ import connectDB from './config/database.js'
 
 
 import productRoutes from './routes/productRoute.js'
+import userRoutes from './routes/userRoutes.js'
 
 
 dotenv.config()
@@ -18,13 +19,17 @@ app.use((req, res, next) => {
     next()
 })
 
+
+app.use(express.json())
+
 app.get('/', (req, res) => {
     res.send('API Is Running')
 });
 
 app.use('/api/products', productRoutes);
-app.use(notFound)
+app.use('/api/users', userRoutes);
 
+app.use(notFound)
 app.use(errorHandler)
 
 
