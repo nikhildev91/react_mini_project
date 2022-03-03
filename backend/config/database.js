@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
+import asyncHandler from "express-async-handler";
 
-const connectDB = async () => {
+const connectDB = asyncHandler(async () => {
     try {
         const connect = await mongoose.connect(process.env.MONGO_URI, {
             useUnifiedTopology: true,
@@ -13,6 +14,6 @@ const connectDB = async () => {
         console.log(`Error: ${error.message}`.red.underline.bold);
         process.exit(1)
     }
-}
+})
 
 export default connectDB;
