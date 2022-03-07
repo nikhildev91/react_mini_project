@@ -26,6 +26,7 @@ const RegisterScreen = () => {
             navigate(redirect)
         }
     }, [navigate, userInfo, redirect])
+
     const submitHandler = (e) => {
         e.preventDefault()
         if (password !== confirmPassword) {

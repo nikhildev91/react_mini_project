@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../Actions/UserAction'
+import { userListReducer } from '../Reducers/UserReducer'
 
 
 const Header = () => {
@@ -38,6 +39,23 @@ const Header = () => {
                             ) : <LinkContainer to='/login'>
                                 <Nav.Link><i className='fas fa-user'></i> Sign In</Nav.Link>
                             </LinkContainer>}
+
+                            {userInfo && userInfo.isAdmin && (
+                                <NavDropdown title='Admin' id='adminmenu'>
+                                    <LinkContainer to='/admin/userlist'>
+                                        <NavDropdown.Item>Users List</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to='/admin/productlist'>
+                                        <NavDropdown.Item>Products List</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to='/admin/orderlist'>
+                                        <NavDropdown.Item>Orders List</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <NavDropdown.Item onClick={logoutHandler}>
+                                        Logout
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            )}
 
                         </Nav>
                     </Navbar.Collapse>
